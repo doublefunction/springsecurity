@@ -61,6 +61,21 @@ public class ApiController {
         return "发送成功";
     }
 
+
+    @GetMapping(SecurityConstants.VALIDATE_CODE_URL_PREFIX + "/sendEmail")
+    public String sendEmailCode(String email, HttpSession session) {
+        int code = (int) Math.ceil(Math.random() * 9000 + 1000);
+
+        Map<String, Object> map = new HashMap<>(16);
+        map.put("email", email);
+        map.put("code", code);
+
+        session.setAttribute("smsCode", map);
+
+        log.info("{}：为 {} 邮箱验证码：{}", session.getId(), email, code);
+
+        return "发送成功";
+    }
     /**
      * 读取当前用户鉴权信息
      */

@@ -53,6 +53,26 @@
     </table>
 </form>
 
+<h3>邮箱登录</h3>
+<form action="/authentication/email" method="post">
+    <table>
+        <tr>
+            <td>邮箱:</td>
+            <td><input type="text" id="email" name="email" required></td>
+        </tr>
+        <tr>
+            <td>邮箱验证码:</td>
+            <td>
+                <input type="text" name="emailCode" required>
+                <a href="javascript:;" onclick="sendEmailMsg()">发送邮箱验证码</a>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2"><button type="submit">登录</button></td>
+        </tr>
+    </table>
+</form>
+
 <script src="assets/js/jquery-3.3.1.min.js"></script>
 <script>
     function refresh(obj) { obj.src = "/code/getVerifyCode?" + Math.random(); }
@@ -69,7 +89,25 @@
             dataType: 'text',
             data: null,
             success: function (data) {
-                alert("发送成功");
+                alert("发送短信验证码成功");
+            },
+            error: function (error) {
+                console.log("内部错误");
+            }
+        });
+    }
+
+    function sendEmailMsg() {
+        var email = $("#email").val();
+
+        $.ajax({
+            type: 'get',
+            async: true,
+            url: '/code/sendEmail?email=' + email,
+            dataType: 'text',
+            data: null,
+            success: function (data) {
+                alert("发送邮箱验证码成功");
             },
             error: function (error) {
                 console.log("内部错误");
