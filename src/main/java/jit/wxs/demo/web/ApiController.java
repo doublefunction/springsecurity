@@ -4,6 +4,7 @@ import com.github.qcloudsms.SmsMultiSender;
 import com.github.qcloudsms.SmsMultiSenderResult;
 import jit.wxs.demo.security.SecurityConstants;
 import jit.wxs.demo.util.ResultMap;
+import jit.wxs.demo.util.SendUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -58,7 +59,7 @@ public class ApiController {
 
         session.setAttribute("smsCode", map);
 
-
+        SendUtil.sendsms(mobile,String.valueOf(code));
 
         log.info("{}：为 {} 设置短信验证码：{}", session.getId(), mobile, code);
 
@@ -75,6 +76,13 @@ public class ApiController {
         map.put("code", code);
 
         session.setAttribute("emailCode", map);
+
+        try {
+            SendUtil.sendEmailMessage(email);
+        }catch (Exception e){
+            log.info("验证码发送失败");
+            return "发送失败";
+        }
 
         log.info("{}：为 {} 邮箱验证码：{}", session.getId(), email, code);
 
@@ -136,30 +144,5 @@ public class ApiController {
         return new ResultMap(getClass().getName() + ":codeError()", "验证码输入错误");
     }
 
-    public void sendsms(String mobile, String code){
-        // 短信应用 SDK AppID
-        	int appid = 1400239434; // SDK AppID 以1400开头
-// 短信应用 SDK AppKey
-        	String appkey = "c430fdff79b69a69dd53b99763b2b12e";
-// 需要发送短信的手机号码
-        String[] phoneNumbers = {""};
-        phoneNumbers[0] = mobile;
-// 短信模板 ID，需要在短信应用中申请
-        int templateId = 390345;
-// 签名
-        String smsSign = "伏诺瓦科技"; // NOTE: 签名参数使用的是`签名内容`，而不是`签名ID`。
 
-        // 指定模板ID单发短信
-        try {
-            String[] params = {""};
-            params[0] = code;
-            SmsMultiSender msender = new SmsMultiSender(appid, appkey);
-            SmsMultiSenderResult result =  msender.sendWithParam("86", phoneNumbers,
-                    templateId, params, smsSign, "", "");  // 签名参数未提供或者为空时，会使用默认签名发送短信
-            System.out.print(result);
-        } catch (Exception e) {
-            // HTTP响应码错误
-            e.printStackTrace();
-        }
-    }
 }
