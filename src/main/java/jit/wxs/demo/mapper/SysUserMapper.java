@@ -14,4 +14,7 @@ public interface SysUserMapper {
 
     @Select("SELECT * FROM sys_user WHERE mobile = #{mobile}")
     SysUser selectByMobile(String mobile);
+
+    @Select("SELECT * FROM sys_user WHERE email = #{email}")
+    SysUser selectByEmail(String email);
 }

@@ -2,6 +2,7 @@ package jit.wxs.demo.security;
 
 import jit.wxs.demo.security.authentication.*;
 import jit.wxs.demo.security.validate.code.ValidateCodeSecurityConfig;
+import jit.wxs.demo.security.validate.email.MailCodeAuthenticationSecurityConfig;
 import jit.wxs.demo.security.validate.mobile.SmsCodeAuthenticationSecurityConfig;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -42,6 +43,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     private ValidateCodeSecurityConfig validateCodeSecurityConfig;
     @Autowired
     private SmsCodeAuthenticationSecurityConfig smsCodeAuthenticationSecurityConfig;
+    @Autowired
+    private MailCodeAuthenticationSecurityConfig mailCodeAuthenticationSecurityConfig;
     @Autowired
     private DataSource dataSource;
 
@@ -96,6 +99,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 // 添加关于验证码登录的配置
                 .apply(validateCodeSecurityConfig).and()
                 .apply(smsCodeAuthenticationSecurityConfig).and()
+                .apply(mailCodeAuthenticationSecurityConfig).and()
                 // 设置登陆页
                 .formLogin()
                     // 没有权限时跳转的Url

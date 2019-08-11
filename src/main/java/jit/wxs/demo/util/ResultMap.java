@@ -1,6 +1,6 @@
 package jit.wxs.demo.util;
 
-import lombok.Data;
+        import lombok.Data;
 
 @Data
 public class ResultMap {

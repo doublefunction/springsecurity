@@ -31,15 +31,26 @@ public class SecurityConstants {
      * 手机验证码登录请求处理url
      */
     public static final String LOGIN_PROCESSING_URL_MOBILE = "/authentication/mobile";
-
+    /**
+     * 邮箱验证码登录请求处理url
+     */
+    public static final String LOGIN_PROCESSING_URL_EMAIL = "/authentication/email";
     /**
      * 手机验证码登录手机号表单字段名
      */
     public static final String LOGIN_MOBILE_PARAMETER = "mobile";
     /**
+     * 邮箱登录邮箱表单字段名
+     */
+    public static final String LOGIN_EMAIL_PARAMETER = "email";
+    /**
      * 手机验证码登录验证码表单字段名
      */
     public static final String LOGIN_MOBILE_CODE_PARAMETER = "smsCode";
+    /**
+     * 手机验证码登录验证码表单字段名
+     */
+    public static final String LOGIN_EMAIL_CODE_PARAMETER = "emailCode";
     /**
      * 验证码登陆表单字段名
      */

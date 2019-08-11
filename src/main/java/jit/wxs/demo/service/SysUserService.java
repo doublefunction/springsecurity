@@ -21,4 +21,8 @@ public class SysUserService {
     public SysUser getByMobile(String mobile) {
         return userMapper.selectByMobile(mobile);
     }
+
+    public SysUser getByEmail(String email) {
+        return userMapper.selectByEmail(email);
+    }
 }
