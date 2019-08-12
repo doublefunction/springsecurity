@@ -37,6 +37,12 @@ public class ApiController {
         return "如果你看见这句话，说明你有ROLE_USER角色";
     }
 
+    @GetMapping("/role/superAdmin")
+    @PreAuthorize("hasRole('ROLE_SUPER_ADMIN')")
+    public String printSuperAdmin() {
+        return "如果你看见这句话，说明你有ROLE_SUPER_ADMIN角色";
+    }
+
     @GetMapping("/permission/admin/r")
     @PreAuthorize("hasPermission('/admin','r')")
     public String printAdminR() {

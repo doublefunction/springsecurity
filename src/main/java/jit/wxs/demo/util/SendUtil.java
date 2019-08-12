@@ -17,14 +17,15 @@ public class SendUtil {
     // PS: 某些邮箱服务器为了增加邮箱本身密码的安全性，给 SMTP 客户端设置了独立密码（有的邮箱称为“授权码”）,
     //     对于开启了独立密码的邮箱, 这里的邮箱密码必需使用这个独立密码（授权码）。
     public static String myEmailAccount = "291391973@qq.com";
-    public static String myEmailPassword = "fjqsnuhsklijcagg";
+    public static String myEmailPassword = "paymuvnrwdtabigg";
 
     // 发件人邮箱的 SMTP 服务器地址, 必须准确, 不同邮件服务器地址不同, 一般(只是一般, 绝非绝对)格式为: smtp.xxx.com
-    // 网易163邮箱的 SMTP 服务器地址为: smtp.163.com
     public static String myEmailSMTPHost = "smtp.qq.com";
-
-    // 收件人邮箱（替换为自己知道的有效邮箱）
-//    public static String receiveMailAccount = "funzyh2018@126.com";
+    /**
+     *
+     * @param receiveMailAccount  收件人邮箱
+     * @throws Exception
+     */
     public static void  sendEmailMessage(String receiveMailAccount) throws Exception{
         // 1. 创建参数配置, 用于连接邮件服务器的参数配置
         Properties props = new Properties();                    // 参数配置
@@ -117,7 +118,7 @@ public class SendUtil {
     public static void sendsms(String mobile, String code){
         // 短信应用 SDK AppID
         int appid = 1400239434; // SDK AppID 以1400开头
-// 短信应用 SDK AppKey
+//// 短信应用 SDK AppKey
         String appkey = "c430fdff79b69a69dd53b99763b2b12e";
 // 需要发送短信的手机号码
         String[] phoneNumbers = {""};
