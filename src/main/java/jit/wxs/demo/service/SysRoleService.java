@@ -17,4 +17,23 @@ public class SysRoleService {
     public SysRole getByName(String roleName) {
         return roleMapper.selectByName(roleName);
     }
+
+    public Integer createRole(SysRole sysRole){
+        try{
+            roleMapper.createRole(sysRole);
+        }catch (Exception e){
+            return 0;
+        }
+         return 1;
+    }
+
+    public SysRole updateRole(SysRole sysRole){
+         roleMapper.updateRole(sysRole);
+        return sysRole;
+    }
+
+    public SysRole deleteRole(SysRole sysRole){
+         roleMapper.deleteRole(sysRole);
+        return sysRole;
+    }
 }

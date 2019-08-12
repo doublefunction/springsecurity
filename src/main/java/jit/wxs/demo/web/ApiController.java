@@ -104,7 +104,7 @@ public class ApiController {
 
     /**
      * 踢出指定用户
-     * todo: 还需要清理持久化表，不然无法踢出自动登陆用户，我就不做了
+     * todo: 还需要清理持久化表，不然无法踢出自动登陆用户
      */
     @PostMapping("/kick")
     public ResultMap removeUserSessionByUsername(String username) {

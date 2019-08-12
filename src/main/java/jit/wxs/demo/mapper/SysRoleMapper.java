@@ -11,4 +11,11 @@ public interface SysRoleMapper {
 
     @Select("SELECT * FROM sys_role WHERE name = #{roleName}")
     SysRole selectByName(String roleName);
+
+
+    Integer createRole(SysRole sysRole);
+
+    SysRole updateRole(SysRole sysRole);
+
+    SysRole deleteRole(SysRole sysRole);
 }
